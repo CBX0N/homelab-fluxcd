@@ -2,6 +2,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: longhorn
+  namespace: default
 spec:
   targetNamespace: longhorn-system
   install:
@@ -14,4 +15,5 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: longhorn
+        namespace: default
       interval: 10m
