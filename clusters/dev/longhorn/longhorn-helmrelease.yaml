@@ -17,3 +17,28 @@ spec:
         name: longhorn
         namespace: default
       interval: 10m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    meta.helm.sh/release-name: longhorn-system-longhorn
+    meta.helm.sh/release-namespace: longhorn-system
+  labels:
+    app: longhorn-ui
+    app.kubernetes.io/instance: longhorn-system-longhorn
+    app.kubernetes.io/name: longhorn
+  name: longhorn-frontend
+  namespace: longhorn-system
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: http
+  selector:
+    app: longhorn-ui
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer: {}
